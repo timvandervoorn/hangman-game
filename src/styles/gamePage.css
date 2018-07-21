@@ -15,3 +15,16 @@ img {
   text-align: center;
   margin-top: 2em;
 }
+
+.guessed-letters:after {
+  display: block;
+  background-color: #ffb206;
+  height: 2px;
+  width: 20%;
+  margin: auto;
+  content: " ";
+}
+
+span {
+  margin-right: 1em;
+}

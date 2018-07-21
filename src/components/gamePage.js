@@ -58,11 +58,11 @@ export default class GamePage extends React.PureComponent {
                   <Card>
                     <CardBody>
                       
-                      <CardText>Unmasked word: {gamestate.wordToGuess}</CardText>
+                      {/* <CardText>Unmasked word: {gamestate.wordToGuess}</CardText> */}
                       <CardText>Word to guess: {this.props.showGuess(wordToGuess, usedLetters)}</CardText>
 
                       <CardText>Guessed letters: 
-                        {usedLetters.map(((letter,index) =><b key={index}>{letter}</b>))}
+                        <p className="guessed-letters">{`|`}{usedLetters.map(((letter,index) =><span><b key={index}>{letter}</b></span>))}{`|`}</p>
                       </CardText>
 
                       <CardText>Number of wrong guesses = {this.props.wrongGuessCount(wordToGuess, usedLetters)}</CardText>
@@ -70,7 +70,7 @@ export default class GamePage extends React.PureComponent {
                       <Form onSubmit={this.handleSubmit}>
                         <FormGroup>
                           <Label>
-                            Type a letter to make a guess
+                            <b>Type a letter to make a guess</b>
                             <Input onChange={this.handleChange}type="text" name="letter" value={this.state.letter}/>
                             <Button type="submit">Guess</Button>
                           </Label>

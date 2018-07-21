@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 import hangmanPic from '../img/hangman-pic.jpg' 
-import '../styles/introPage.css'
 import {Container, Col} from 'reactstrap';
 
 
