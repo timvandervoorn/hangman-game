@@ -1,5 +1,10 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
+import { Card, CardText, CardBody, CardTitle, Button, Form, FormGroup , Label, Input} from 'reactstrap';
+import hangmanIconS from '../img/hangman-icon-s.png'
+import '../styles/gamePage.css'
+import ScoreBoardContainer from './scoreBoardContainer'
+
 
 export default class GamePage extends React.PureComponent {
 
@@ -33,46 +38,74 @@ export default class GamePage extends React.PureComponent {
     const usedLetters = gamestate.usedLetters
     
     return(
-      <div className="card text-center">
-        <div className="card-body">
-          <h5 className="card-title">HANGMAN</h5>
+      <div className="container">
+          <div className="col md-6">
+            <div className="card">
+                <div className="card-body text-center">
 
-           {gamestate.wordToGuess === '' && 
-            <div>
-              <button onClick={this.handleClick} className="btn btn-primary">New Game</button>
-            </div>
-           }
+                {gamestate.wordToGuess === '' && 
 
-          {!this.props.gameFinished(gamestate.wordToGuess, gamestate.usedLetters) && 
-            <div>
-              <p>Unmasked word: {gamestate.wordToGuess}</p>
-              <p>Word to guess: {this.props.showGuess(wordToGuess, usedLetters)}</p>
+                  <div className="card" >
+                    <div className="card-body">
+                      <img src={hangmanIconS} className="img-fluid rounded mx-auto d-block"/>
+                      <Button onClick={this.handleClick} color="primary" size="l" className="btn btn-primary" >New Game</Button>
+                    </div>
+                  </div>
 
-              <p>Guessed letters: 
-                {usedLetters.map(((letter,index) =><b key={index}>{letter}</b>))}
-              </p>
+                }
 
-              <p>Number of wrong guesses = {this.props.wrongGuessCount(wordToGuess, usedLetters)}</p>
+                {!this.props.gameFinished(gamestate.wordToGuess, gamestate.usedLetters) && 
+                  <div>
+                    <h1>A round of Hangman</h1>
+                    <div className="card">
+                      <div className="card-body">
+                        
+                        <CardText>Unmasked word: {gamestate.wordToGuess}</CardText>
+                        <CardText>Word to guess: {this.props.showGuess(wordToGuess, usedLetters)}</CardText>
 
-              <form onSubmit={this.handleSubmit}>
-                <label>
-                  Type a letter to make a guess
-                  <input onChange={this.handleChange}type="text" name="letter" value={this.state.letter}/>
-                  <button type="submit">Guess</button>
-                </label>  
-              </form>
-            </div>
-          }
+                        <CardText>Guessed letters: 
+                          {usedLetters.map(((letter,index) =><b key={index}>{letter}</b>))}
+                        </CardText>
 
-          {gamestate.wordToGuess !== '' && gameIsFinished &&
-            <div>
-              <button onClick={this.handleClick} className="btn btn-primary">New Game</button>
-                You have <b>{isWinner ? 'won' : 'lost'}</b>. Play another round?
-            </div>
-          }
-          <Link to="/">Back to the homescreen</Link>
-        </div>
-      </div>
+                        <CardText>Number of wrong guesses = {this.props.wrongGuessCount(wordToGuess, usedLetters)}</CardText>
+
+                        <Form onSubmit={this.handleSubmit}>
+                          <FormGroup>
+                            <Label>
+                              Type a letter to make a guess
+                              <Input onChange={this.handleChange}type="text" name="letter" value={this.state.letter}/>
+                              <Button type="submit" className="btn btn-primary">Guess</Button>
+                            </Label>
+                          </FormGroup>  
+                        </Form>
+                      </div>
+                    </div>
+                  </div>
+                }
+
+                {gamestate.wordToGuess !== '' && gameIsFinished &&
+
+                  <div className="card">
+                    <div className="card-body">
+                      <Button onClick={this.handleClick} color="primary" lassName="btn btn-primary">New Game</Button>
+                      <p>The word to guess was: {wordToGuess}</p>
+                      <p>You have <b>{isWinner ? 'won!' : 'lost :('}</b> Play another round?</p>
+                    </div>
+                  </div>
+                }
+
+                {gamestate.wordToGuess !== '' && 
+                  <div>
+                    <ScoreBoardContainer />
+                  </div>
+                }
+
+
+                <Link to="/">Back to the homescreen</Link>
+              </div>
+          </div>
+          </div>
+      </div>  
     )
   }
 }

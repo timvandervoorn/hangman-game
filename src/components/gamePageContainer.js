@@ -29,8 +29,7 @@ class GamePageContainer extends PureComponent {
     return(
       <div>
         <GamePage gamestate={this.props.gamestate} startNewGame={this.startNewGame} makeAGuess={this.makeAGuess} wrongGuessCount={wrongGuessCount} showGuess={showGuess} gameFinished={gameFinished} wrongGuessLimit={wrongGuessLimit} isWinner={isWinner} 
-        currentGuessCount={currentGuessCount}
-        />   
+        currentGuessCount={currentGuessCount} />   
       </div>
     )
   }
