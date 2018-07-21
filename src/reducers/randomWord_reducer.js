@@ -3,6 +3,7 @@ import {NEW_GAME, MAKE_GUESS} from '../actions/game'
 const initialState = {
   usedLetters: [],
   wordToGuess: '',
+  previousWords: [],
 }
 
 export default (state = initialState, action = {}) => {
@@ -12,6 +13,7 @@ export default (state = initialState, action = {}) => {
             ...state,
             usedLetters: [],
             wordToGuess: action.payload,
+            previousWords: state.previousWords.concat(action.payload)
           }
       case MAKE_GUESS:
           return {
@@ -22,4 +24,9 @@ export default (state = initialState, action = {}) => {
           return state
   }
 }
+
+// previousGames: {
+//   previousWord: action.payload,
+//   gameId: 1
+// }
 

@@ -7,5 +7,11 @@ img {
 }
 
 .card {
-  margin-bottom: 2em
+  margin-top: 2em
+}
+
+.home-link{
+  display: block;
+  text-align: center;
+  margin-top: 2em;
 }
