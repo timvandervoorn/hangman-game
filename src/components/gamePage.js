@@ -46,7 +46,6 @@ export default class GamePage extends React.PureComponent {
 
           {!this.props.gameFinished(gamestate.wordToGuess, gamestate.usedLetters) && 
             <div>
-              <p>Gamestate {this.props.gameFinished(gamestate.wordToGuess, gamestate.usedLetters)}</p>
               <p>Current guess count = {gamestate.usedLetters.length}</p>
               <p>Word to guess is = {gamestate.wordToGuess}</p>
               <p>Masked word from state = {this.props.showGuess(gamestate.wordToGuess, gamestate.usedLetters)}</p>
@@ -67,7 +66,7 @@ export default class GamePage extends React.PureComponent {
             </div>
           }
 
-          {this.props.gameFinished(gamestate.wordToGuess, gamestate.usedLetters) &&
+          {gamestate.wordToGuess !== '' && gameIsFinished &&
             <div>
               <button onClick={this.handleClick} className="btn btn-primary">New Game</button>
                 You have <b>{isWinner ? 'won' : 'lost'}</b>. Play another round?
