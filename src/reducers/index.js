@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import gamestateReducer from './randomWord_reducer'
+import gamestateReducer from './game_reducer'
 
 export default combineReducers({
   gamestate: gamestateReducer

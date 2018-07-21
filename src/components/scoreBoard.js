@@ -10,10 +10,17 @@ export default function ScoreBoard(props) {
                 <CardBody> 
                     <Card>
                         <CardBody>
+
+                            {props.gamestate.previousGames.length <= 0 && 
+                                <div>
+                                    <h1>No previous games to show</h1>
+                                </div>
+                            }
+
                             {props.gamestate.previousGames.length > 0 && 
                                <div>
                                    <h1>Previous games</h1>
-                                   <p>You have played {props.gamestate.previousGames.length + 1} in total!</p>
+                                   <p>You have played {props.gamestate.previousGames.length + 1} games in total!</p>
                                     {props.gamestate.previousGames.map((game,index) => {
                                         return (
                                             <div key={index + 1}>

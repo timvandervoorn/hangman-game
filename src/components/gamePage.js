@@ -57,20 +57,16 @@ export default class GamePage extends React.PureComponent {
                   <h1>A round of Hangman</h1>
                   <Card>
                     <CardBody>
-                      
-                      {/* <CardText>Unmasked word: {gamestate.wordToGuess}</CardText> */}
                       <CardText>Word to guess: {this.props.showGuess(wordToGuess, usedLetters)}</CardText>
-
                       <CardText>Guessed letters:</CardText>
                       <p className="guessed-letters">=>{usedLetters.map(((letter,index) =><span key={index}><b key={index}>{letter}</b></span>))}</p>
-                      
                       <CardText>Number of wrong guesses = {this.props.wrongGuessCount(wordToGuess, usedLetters)}</CardText>
-
                       <Form onSubmit={this.handleSubmit}>
                         <FormGroup>
                           <Label>
                             <b>Type a letter to make a guess</b>
                             <Input onChange={this.handleChange}type="text" name="letter" value={this.state.letter}/>
+                            {this.state.letter.length > 1 && <p>MAKE SURE TO ONLY PROVIDE 1 LETTER!</p>}
                             <Button type="submit">Guess</Button>
                           </Label>
                         </FormGroup>  
@@ -78,6 +74,7 @@ export default class GamePage extends React.PureComponent {
                     </CardBody>
                   </Card>
                 </div>
+
               }
 
                 {gamestate.wordToGuess !== '' && gameIsFinished &&
@@ -89,6 +86,7 @@ export default class GamePage extends React.PureComponent {
                       <p>You have <b>{isWinner ? 'won!' : 'lost :('}</b> Play another round?</p>
                     </CardBody>
                   </Card>
+
                 }
 
               </CardBody>
