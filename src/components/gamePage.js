@@ -8,10 +8,8 @@ export default class GamePage extends React.PureComponent {
   }
   
   handleChange = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
     this.setState({
-      [name]: value
+      [e.target.name]: e.target.value
     })
   }
 
@@ -31,8 +29,9 @@ export default class GamePage extends React.PureComponent {
     const gamestate = this.props.gamestate
     const isWinner = this.props.isWinner(gamestate.wordToGuess, gamestate.usedLetters)
     const gameIsFinished = this.props.gameFinished(gamestate.wordToGuess, gamestate.usedLetters)
-    console.log(isWinner)
-    console.log(gameIsFinished)
+    const wordToGuess = gamestate.wordToGuess
+    const usedLetters = gamestate.usedLetters
+    
     return(
       <div className="card text-center">
         <div className="card-body">
@@ -46,15 +45,14 @@ export default class GamePage extends React.PureComponent {
 
           {!this.props.gameFinished(gamestate.wordToGuess, gamestate.usedLetters) && 
             <div>
-              <p>Current guess count = {gamestate.usedLetters.length}</p>
-              <p>Word to guess is = {gamestate.wordToGuess}</p>
-              <p>Masked word from state = {this.props.showGuess(gamestate.wordToGuess, gamestate.usedLetters)}</p>
+              <p>Unmasked word: {gamestate.wordToGuess}</p>
+              <p>Word to guess: {this.props.showGuess(wordToGuess, usedLetters)}</p>
 
               <p>Guessed letters: 
-                {gamestate.usedLetters.map(((letter,index) =><b key={index}>{letter}</b>))}
+                {usedLetters.map(((letter,index) =><b key={index}>{letter}</b>))}
               </p>
 
-              <p>Number of wrong guesses = {this.props.wrongGuessCount(gamestate.wordToGuess, gamestate.usedLetters)}</p>
+              <p>Number of wrong guesses = {this.props.wrongGuessCount(wordToGuess, usedLetters)}</p>
 
               <form onSubmit={this.handleSubmit}>
                 <label>
