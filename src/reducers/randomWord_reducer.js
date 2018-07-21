@@ -1,9 +1,10 @@
-import {NEW_GAME, MAKE_GUESS} from '../actions/game'
+import {NEW_GAME, MAKE_GUESS, STORE_GAME} from '../actions/game'
 
 const initialState = {
   usedLetters: [],
   wordToGuess: '',
   previousWords: [],
+  previousGames: []
 }
 
 export default (state = initialState, action = {}) => {
@@ -19,6 +20,11 @@ export default (state = initialState, action = {}) => {
           return {
             ...state,
             usedLetters: state.usedLetters.concat(action.payload)
+          }
+      case STORE_GAME:
+          return {
+            ...state,
+            previousGames: state.previousGames.concat(action.payload)
           }
       default:
           return state

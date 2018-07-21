@@ -13,7 +13,7 @@ export default class GamePage extends React.PureComponent {
   
   handleChange = (e) => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value.toLowerCase()
     })
   }
 
@@ -46,7 +46,7 @@ export default class GamePage extends React.PureComponent {
 
                   <div>
                     <img src={hangmanIconS} className="img-fluid rounded mx-auto d-block" alt="hangman-icon"/>
-                    <Button onClick={this.handleClick} color="primary" size="l" className="btn btn-primary" >New Game</Button>
+                    <Button onClick={this.handleClick} color="primary" size="l" className="btn btn-primary" >START GAME</Button>
                   </div>
           
               }
@@ -61,10 +61,9 @@ export default class GamePage extends React.PureComponent {
                       {/* <CardText>Unmasked word: {gamestate.wordToGuess}</CardText> */}
                       <CardText>Word to guess: {this.props.showGuess(wordToGuess, usedLetters)}</CardText>
 
-                      <CardText>Guessed letters: 
-                        <p className="guessed-letters">{`|`}{usedLetters.map(((letter,index) =><span><b key={index}>{letter}</b></span>))}{`|`}</p>
-                      </CardText>
-
+                      <CardText>Guessed letters:</CardText>
+                      <p className="guessed-letters">=>{usedLetters.map(((letter,index) =><span key={index}><b key={index}>{letter}</b></span>))}</p>
+                      
                       <CardText>Number of wrong guesses = {this.props.wrongGuessCount(wordToGuess, usedLetters)}</CardText>
 
                       <Form onSubmit={this.handleSubmit}>
@@ -85,8 +84,8 @@ export default class GamePage extends React.PureComponent {
 
                   <Card>
                     <CardBody>
-                      <Button onClick={this.handleClick} color="primary" className="btn">New Game</Button>
-                      <p>The word to guess was: {wordToGuess}</p>
+                      <Button onClick={this.handleClick} color="primary" className="btn">NEW GAME</Button>
+                      <p>The word to guess was: <b>{wordToGuess}</b></p>
                       <p>You have <b>{isWinner ? 'won!' : 'lost :('}</b> Play another round?</p>
                     </CardBody>
                   </Card>
