@@ -17,6 +17,10 @@ export default (state = initialState, action = {}) => {
             previousWords: state.previousWords.concat(action.payload)
           }
       case MAKE_GUESS:
+          if(state.usedLetters.find(guessedLetter => guessedLetter === action.payload)) {
+              alert(`You made this guess already, guess again`)
+              return state
+          }
           return {
             ...state,
             usedLetters: state.usedLetters.concat(action.payload)
@@ -30,9 +34,3 @@ export default (state = initialState, action = {}) => {
           return state
   }
 }
-
-// previousGames: {
-//   previousWord: action.payload,
-//   gameId: 1
-// }
-
