@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Card, CardText, CardBody, Button, Form, FormGroup , Label, Input, Container, Col} from 'reactstrap';
-import hangmanIconS from '../img/hangman-icon-s.png'
+
+
 import '../styles/gamePage.css'
 import {Link} from 'react-router-dom'
 
@@ -45,7 +46,7 @@ export default class GamePage extends React.PureComponent {
               {gamestate.wordToGuess === '' && 
 
                   <div>
-                    <img src={hangmanIconS} className="img-fluid rounded mx-auto d-block" alt="hangman-icon"/>
+                    <img src={require(`../img/hangman-stage-0.svg`)} className="hangman-image img-fluid rounded mx-auto d-block" alt="hangman-icon"/>
                     <Button onClick={this.handleClick} color="primary" size="l" className="btn btn-primary" >START GAME</Button>
                   </div>
           
@@ -60,7 +61,7 @@ export default class GamePage extends React.PureComponent {
                       <CardText>Word to guess: {this.props.showGuess(wordToGuess, usedLetters)}</CardText>
                       <CardText>Guessed letters:</CardText>
                       <p className="guessed-letters">=>{usedLetters.map(((letter,index) =><span key={index}><b key={index}>{letter}</b></span>))}</p>
-                      <CardText>Number of wrong guesses = {this.props.wrongGuessCount(wordToGuess, usedLetters)}</CardText>
+                      <CardText>Number of wrong guesses = {this.props.wrongGuessCount(wordToGuess, usedLetters)} / 6</CardText>
                       <Form onSubmit={this.handleSubmit}>
                         <FormGroup>
                           <Label>
@@ -71,6 +72,7 @@ export default class GamePage extends React.PureComponent {
                           </Label>
                         </FormGroup>  
                       </Form>
+                      <img src={require(`../img/hangman-stage-${this.props.wrongGuessCount(wordToGuess, usedLetters)}.svg`)} className="img-fluid rounded mx-auto d-block hangman-image" alt="hangman-icon"/>
                     </CardBody>
                   </Card>
                 </div>
@@ -84,6 +86,9 @@ export default class GamePage extends React.PureComponent {
                       <Button onClick={this.handleClick} color="primary" className="btn">NEW GAME</Button>
                       <p>The word to guess was: <b>{wordToGuess}</b></p>
                       <p>You have <b>{isWinner ? 'won!' : 'lost :('}</b> Play another round?</p>
+                      {!isWinner && <img src={require(`../img/hangman-stage-${6}.svg`)} className="img-fluid rounded mx-auto d-block hangman-image" alt="hangman-icon"/>}
+                      {isWinner && <img src={require(`../img/hangman-stage-win.svg`)} className="img-fluid rounded mx-auto d-block hangman-image" alt="hangman-icon"/>}
+                     
                     </CardBody>
                   </Card>
 
