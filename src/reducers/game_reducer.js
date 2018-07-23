@@ -20,7 +20,8 @@ export default (state = initialState, action = {}) => {
           if(state.usedLetters.find(guessedLetter => guessedLetter === action.payload)) {
               alert(`You made this guess already, guess again`)
               return state
-          }
+          } 
+        
           return {
             ...state,
             usedLetters: state.usedLetters.concat(action.payload)
@@ -34,3 +35,8 @@ export default (state = initialState, action = {}) => {
           return state
   }
 }
+
+// if(state.usedLetters.find(guessedLetter => guessedLetter === action.payload)) {
+//   alert(`You made this guess already, guess again`)
+//   return state
+// } 

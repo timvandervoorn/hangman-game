@@ -66,7 +66,7 @@ export default class GamePage extends React.PureComponent {
                         <FormGroup>
                           <Label>
                             <b>Type a letter to make a guess</b>
-                            <Input onChange={this.handleChange}type="text" name="letter" value={this.state.letter}/>
+                            <Input onChange={this.handleChange}type="text" name="letter" value={this.state.letter} pattern="[A-Za-z]{1}"/>
                             {this.state.letter.length > 1 && <p>MAKE SURE TO ONLY PROVIDE 1 LETTER!</p>}
                             <Button type="submit">Guess</Button>
                           </Label>
