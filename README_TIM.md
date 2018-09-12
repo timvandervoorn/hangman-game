@@ -1,1 +1,0 @@
-FYI: as extra dependencies, I have installed reactstrap: https://reactstrap.github.io/
